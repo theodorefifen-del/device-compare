@@ -1,12 +1,96 @@
-
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <title>Comparateur Smartphones</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Comparateur Smartphones (France)</title>
+  <meta name="description" content="Compare des smartphones : filtres, scores et comparaison 2 à 4 modèles." />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <h1>Le site est bien lancé 🎉</h1>
-  <p>Cette version statique confirme que le déploiement fonctionne.</p>
+  <header class="header">
+    <div class="container nav">
+      <div class="brand">
+        <strong>DeviceCompare</strong>
+        <span>FR · €</span>
+      </div>
+
+      <div class="nav-actions">
+        <a class="pill" href="#catalogue">Catalogue</a>
+        <a class="pill" href="#compare">Comparateur <span id="compareCount">(0/4)</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Comparer des smartphones, simplement.</h1>
+      <p class="muted">Recherche, filtres (5G/NFC), scores par profil (Photo, Gaming, Autonomie, Budget) et comparaison jusqu’à 4 modèles.</p>
+
+      <div class="hero-bar">
+        <input id="q" type="search" placeholder="Rechercher (marque, modèle…)" />
+        <select id="profile">
+          <option value="budget">Profil : Budget</option>
+          <option value="photo">Profil : Photo</option>
+          <option value="gaming">Profil : Gaming</option>
+          <option value="autonomie">Profil : Autonomie</option>
+        </select>
+      </div>
+
+      <div class="chips">
+        <label class="chip"><input id="f5g" type="checkbox"> 5G</label>
+        <label class="chip"><input id="fnfc" type="checkbox"> NFC</label>
+        <label class="chip"><input id="foled" type="checkbox"> OLED/AMOLED</label>
+        <label class="chip"><input id="f120" type="checkbox"> 120Hz+</label>
+      </div>
+    </section>
+
+    <section id="catalogue" class="section">
+      <div class="section-head">
+        <h2>Catalogue</h2>
+        <div class="range">
+          <label>Prix max (€)</label>
+          <input id="maxPrice" type="range" min="100" max="1200" step="50" value="1200" />
+          <span id="maxPriceLabel">1200 €</span>
+        </div>
+      </div>
+
+      <div id="grid" class="grid"></div>
+    </section>
+
+    <section id="compare" class="section">
+      <div class="section-head">
+        <h2>Comparateur (2 à 4)</h2>
+        <div class="row">
+          <button id="clearCompare" class="btn secondary">Vider</button>
+        </div>
+      </div>
+
+      <div id="compareEmpty" class="card muted">
+        Ajoute au moins <b>2</b> téléphones depuis le catalogue.
+      </div>
+
+      <div id="compareWrap" class="table-wrap hidden">
+        <table id="compareTable"></table>
+      </div>
+    </section>
+
+    <footer class="footer muted">
+      <p>© <span id="year"></span> DeviceCompare. Liens Amazon à ajouter plus tard (tag affilié).</p>
+    </footer>
+  </main>
+
+  <!-- Modal fiche -->
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3 id="modalTitle">Fiche</h3>
+        <button id="closeModal" class="btn secondary">Fermer</button>
+      </div>
+      <div id="modalBody" class="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
 </body>
 </html>
